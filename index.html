@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Americanas - Visualização do Design</title>
+    <style>
+        /* 1. Variáveis de Cores */
+        :root {
+            --cor-principal: #e10c18; /* Vermelho Americanas */
+            --cor-secundaria: #0046b5; /* Azul Americanas */
+            --cor-fundo: #f5f5f5; /* Fundo cinza claro */
+            --cor-texto: #333;
+            --sombra-card: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 2. Reset Básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            line-height: 1.6;
+        }
+
+        /* 3. Estilo do Cabeçalho e Logo */
+        header {
+            background-color: var(--cor-principal);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .logo a {
+            text-decoration: none;
+            color: white;
+        }
+        .logo-red { color: white; }
+        .logo-blue { color: var(--cor-secundaria); }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+            padding: 5px 0;
+            transition: border-bottom 0.3s ease;
+        }
+        nav a.active {
+            border-bottom: 3px solid white;
+        }
+        nav a:hover {
+            border-bottom: 3px solid var(--cor-secundaria);
+        }
+
+        /* 3. Estilos Específicos da Landing Page (HERO) - DO INDEX */
+        .hero {
+            background: linear-gradient(150deg, #ff4c4c 0%, var(--cor-principal) 40%, #ffc0c0 100%);
+            color: white;
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        }
+
+        .hero-content {
+            background-color: white;
+            padding: 45px 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            max-width: 550px;
+            width: 100%;
+            border: 6px solid var(--cor-secundaria);
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-content h1 {
+            color: var(--cor-secundaria);
+            font-size: 2.5em; /* Reduzido de 3em para 2.5em */
+            font-weight: 900;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .hero-content p {
+            color: var(--cor-texto);
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .shopping-bag-icon {
+            margin-bottom: 25px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* 4. Estilos dos Botões (Garantidos para Cor) - DO INDEX */
+        .action-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-action {
+            padding: 18px 35px;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 800;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            min-width: 220px;
+            text-align: center;
+            text-transform: uppercase;
+            color: white !important;
+            cursor: pointer;
+        }
+
+        .btn-login {
+            background-color: var(--cor-secundaria); /* AZUL FORTE */
+            border: 3px solid var(--cor-secundaria);
+            box-shadow: 0 6px 15px rgba(0, 70, 181, 0.4);
+        }
+
+        .btn-login:hover {
+            background-color: #00388d;
+            box-shadow: 0 8px 20px rgba(0, 70, 181, 0.6);
+            transform: translateY(-2px);
+        }
+
+        .btn-register {
+            background-color: var(--cor-principal); /* VERMELHO FORTE */
+            border: 3px solid var(--cor-principal);
+            box-shadow: 0 6px 15px rgba(225, 12, 24, 0.4);
+        }
+
+        .btn-register:hover {
+            background-color: #c70b16;
+            box-shadow: 0 8px 20px rgba(225, 12, 24, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* 4. Layout Principal (Centralização para Login/Cadastro) - DO LAYOUT CSS */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+            min-height: 80vh;
+        }
+
+        /* 5. Cartão do Formulário (Form Card) - DO LAYOUT CSS */
+        .form-card {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: var(--sombra-card);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .form-card h2 {
+            color: var(--cor-principal);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* 6. Estilo dos Inputs - DO LAYOUT CSS */
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: var(--cor-texto);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--cor-secundaria);
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 70, 181, 0.5); /* Sombra azul forte no foco */
+        }
+
+        /* 7. Estilo do Botão Principal - DO LAYOUT CSS */
+        .btn-primary {
+            width: 100%;
+            background-color: var(--cor-principal);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #c70b16; /* Tom mais escuro */
+            transform: translateY(-1px);
+        }
+
+        .login-link {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: var(--cor-secundaria);
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* 8. Estilo do Rodapé e Tabela Acadêmica (Consistente) */
+        footer {
+            background-color: var(--cor-secundaria);
+            color: white;
+            padding: 20px 5%;
+            text-align: center;
+            border-top: 3px solid var(--cor-principal);
+        }
+
+        .academic-info h4 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .academic-info table {
+            width: 100%;
+            max-width: 600px;
+            margin: 10px auto;
+            border-collapse: collapse;
+            font-size: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .academic-info th, .academic-info td {
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: left;
+        }
+
+        .academic-info th {
+            background-color: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .academic-info p {
+            margin-top: 10px;
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        /* 9. Mensagens Flash (Alerta de Sucesso/Erro) */
+        .flash-message {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 400px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .flash-message.success {
+            background-color: #4CAF50; /* Verde */
+            color: white;
+        }
+        .flash-message.danger {
+            background-color: #f44336; /* Vermelho */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <!-- ATUALIZADO: Aponta para a rota 'index' -->
+            <a href="{{ url_for('index') }}"><span class="logo-red">americanas</span><span class="logo-blue">.com</span></a>
+        </div>
+        <nav>
+            <!-- ATUALIZADO: Aponta para a rota 'login' -->
+            <a href="{{ url_for('login') }}">Login</a>
+            <!-- ATUALIZADO: Aponta para a rota 'cadastro' -->
+            <a href="{{ url_for('cadastro') }}">Cadastre-se</a>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <div class="hero-content">
+             <!-- Ícone de Sacola -->
+            <svg class="shopping-bag-icon" xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="var(--cor-principal)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 2L3 7v14h18V7l-3-5z"></path>
+                <line x1="3" y1="7" x2="21" y2="7"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+
+            <h1>Seu Mundo Americanas</h1>
+            <!-- Frase ajustada para o contexto da marca -->
+            <p>Acesse sua conta ou crie um novo cadastro. É rápido, fácil e seguro!</p>
+
+            <div class="action-buttons">
+                <!-- ATUALIZADO: Aponta para a rota 'login' -->
+                <a href="{{ url_for('login') }}" class="btn-action btn-login">Acessar Minha Conta</a>
+                <!-- ATUALIZADO: Aponta para a rota 'cadastro' -->
+                <a href="{{ url_for('cadastro') }}" class="btn-action btn-register">Criar Meu Cadastro</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="academic-info">
+            <h4>Projeto Acadêmico - SENAI Roberto Simonsen</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Aluno</th>
+                        <th>Função</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jhonatan Pinheiro Lima</td>
+                        <td>Aluno</td>
+                    </tr>
+                    <tr>
+                        <td>Marley Gutierrez</td>
+                        <td>Aluno</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Este é um projeto de Desenvolvimento de Sistemas (DS) e não representa a Americanas S.A.</p>
+        </div>
+    </footer>
+</body>
+</html>
